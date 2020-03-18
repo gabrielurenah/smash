@@ -1,0 +1,22 @@
+version: "3"
+services:
+  characters-service:
+    build: "./characters-service"
+    depends_on:
+      - characters-service-db
+    volumes:
+      - ./characters-service:/opt/app
+  characters-service-db:
+    image: mongo
+    logging:
+      driver: "none"
+  players-service:
+    build: "./players-service"
+    depends_on:
+      - players-service-db
+    volumes:
+      - ./players-service:/opt/app
+  players-service-db:
+    environment:
+      - POSTGRES_PASSWORD=password
+    image: postgres
