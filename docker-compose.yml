@@ -1,22 +1,33 @@
 version: "3"
+
 services:
+  # C H A R A C T E R S
   characters-service:
     build: "./characters-service"
-    depends_on:
-      - characters-service-db
     volumes:
       - ./characters-service:/opt/app
+    links:
+      - characters-service-db
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/smash
+  # M O N G O - D B
   characters-service-db:
+    container_name: mongo
     image: mongo
+    ports:
+      - 0.0.0.0:7200:27017
     logging:
       driver: "none"
+  # P L A Y E R S
   players-service:
     build: "./players-service"
-    depends_on:
+    links:
       - players-service-db
     volumes:
       - ./players-service:/opt/app
+  # P O S T G R E S Q L- D B
   players-service-db:
+    container_name: postgres
     environment:
       - POSTGRES_PASSWORD=password
     image: postgres
