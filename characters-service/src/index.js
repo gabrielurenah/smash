@@ -1,20 +1,32 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import Hapi from '@hapi/hapi';
+import { PORT } from './config/dotenv';
+import connectToDB from './services/mongo';
 
-dotenv.config();
+connectToDB();
 
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log('Mongo => connection Succesfull👌');
-  })
-  .catch(err => {
-    console.log('ERROR⚠️', err);
-  });
+const server = Hapi.server({
+  port: PORT,
+  host: '0.0.0.0',
+});
 
-console.log('werking');
+server.route({
+  method: 'GET',
+  path: '/',
+  handler: () => 'Hello World!',
+});
+
+exports.start = async () => {
+  await server.start();
+  console.log(`Server running at: ${server.info.uri}`);
+  return server;
+};
+
+exports.init = async () => {
+  await server.initialize();
+  return server;
+};
+
+process.on('unhandledRejection', err => {
+  console.log(err);
+  process.exit(1);
+});
