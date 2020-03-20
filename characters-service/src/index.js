@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -8,13 +8,13 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Mongo => connection Succesfull👌");
+    console.log('Mongo => connection Succesfull👌');
   })
   .catch(err => {
-    console.log("ERROR⚠️", err);
+    console.log('ERROR⚠️', err);
   });
 
-console.log("werking");
+console.log('werking');

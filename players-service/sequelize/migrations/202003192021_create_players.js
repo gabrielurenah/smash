@@ -1,38 +1,38 @@
 module.exports.up = (queryInterface, DataTypes) => {
   return queryInterface.createTable(
-    "players",
+    'players',
     {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
       fullName: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       playerTag: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
       deletedAt: {
         allowNull: true,
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+      },
     },
     {
-      charset: "utf8"
-    }
+      charset: 'utf8',
+    },
   );
 };
 
-module.exports.down = queryInterface => queryInterface.dropTable("players");
+module.exports.down = queryInterface => queryInterface.dropTable('players');
