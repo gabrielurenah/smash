@@ -1,15 +1,17 @@
-version: "3"
+version: '3'
 
 services:
   # C H A R A C T E R S
   characters-service:
-    build: "./characters-service"
+    build: './characters-service'
     volumes:
       - ./characters-service:/opt/app
     links:
       - characters-service-db
     environment:
       - MONGO_URI=mongodb://mongo:27017/smash
+    ports:
+      - 7100:7100
   # M O N G O - D B
   characters-service-db:
     container_name: mongo
@@ -17,10 +19,10 @@ services:
     ports:
       - 0.0.0.0:7200:27017
     logging:
-      driver: "none"
+      driver: 'none'
   # P L A Y E R S
   players-service:
-    build: "./players-service"
+    build: './players-service'
     links:
       - players-service-db
     environment:
@@ -38,4 +40,4 @@ services:
     ports:
       - 0.0.0.0:7201:5432
     logging:
-      driver: "none"
+      driver: 'none'
