@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
 
-import { connect, clearDatabase, closeDatabase } from '../db-handler';
 import { init } from '../../src/index';
 
 describe('GET /', () => {
   let server;
 
-  /**
-   * Connect to a new in-memory database before running any tests.
-   */
   beforeAll(async done => {
-    await connect();
+    await mongoose.connect('mongodb://localhost:27017/tired-af', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     done();
   });
 
@@ -21,15 +20,11 @@ describe('GET /', () => {
 
   afterEach(async done => {
     await server.stop();
-    await clearDatabase();
     done();
   });
 
-  /**
-   * Remove and close the db and server.
-   */
   afterAll(async done => {
-    await closeDatabase();
+    await mongoose.connection.close();
     done();
   });
 
