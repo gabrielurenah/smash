@@ -23,11 +23,19 @@ services:
     build: "./players-service"
     links:
       - players-service-db
+    environment:
+      - DB_URI=postgres://user:password@players-service-db/db?charset=UTF8
     volumes:
       - ./players-service:/opt/app
   # P O S T G R E S Q L- D B
   players-service-db:
     container_name: postgres
     environment:
+      - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=db
     image: postgres
+    ports:
+      - 0.0.0.0:7201:5432
+    logging:
+      driver: "none"
