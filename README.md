@@ -39,15 +39,15 @@ You need to have `docker` and `docker-compose` installed to run this project. If
 
 # Git style guidelines
 
-### For branch names go with the following:
+### For branch names go with the following (# -> Ticket #):
 
-- **SMASH-TICKET#-FEAT**: a new feature
-- **SMASH-TICKET#-FIX**: a bug fix
-- **SMASH-TICKET#-DOCS**: changes to documentation
-- **SMASH-TICKET#-STYLE**: formatting, missing semi colons, etc.
-- **SMASH-TICKET#-REFACTOR**: refactoring production code
-- **SMASH-TICKET#-TEST**: adding tests, refactoring test; no production code change
-- **SMASH-TICKET#-CHORE**: updating build tasks, package manager configs, etc; no production code change
+- **SMASH-#-FEAT**: a new feature
+- **SMASH-#-FIX**: a bug fix
+- **SMASH-#-DOCS**: changes to documentation
+- **SMASH-#-STYLE**: formatting, missing semi colons, etc.
+- **SMASH-#-REFACTOR**: refactoring production code
+- **SMASH-#-TEST**: adding tests, refactoring test; no production code change
+- **SMASH-#-CHORE**: updating build tasks, package manager configs, etc; no production code change
 
 ### For Pull Request main title/commit use the following:
 
