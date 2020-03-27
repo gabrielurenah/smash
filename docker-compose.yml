@@ -3,7 +3,9 @@ version: '3'
 services:
   # C H A R A C T E R S
   characters-service:
-    build: './characters-service'
+    build:
+      context: './characters-service'
+      dockerfile: Dockerfile.dev
     volumes:
       - ./characters-service:/opt/app
     links:
@@ -22,7 +24,9 @@ services:
       driver: 'none'
   # P L A Y E R S
   players-service:
-    build: './players-service'
+    build:
+      context: './players-service'
+      dockerfile: Dockerfile.dev
     links:
       - players-service-db
     environment:

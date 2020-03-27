@@ -1,9 +1,11 @@
 FROM node:12
 
-COPY . /opt/app
-
 WORKDIR /opt/app
 
-RUN npm install
+COPY package*.json ./
+
+RUN npm install --silent
+
+COPY ./ ./
 
 CMD npm run watch
