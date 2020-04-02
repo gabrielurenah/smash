@@ -7,17 +7,17 @@ const Character = mongoose.Schema({
     minLength: 1,
     maxLength: 100,
   },
-  //TO-DO: change for a reference to Franchise Model
   franchise: {
-    type: String,
-    minLength: 1,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Franchise',
+    required: true,
   },
-  //TO-DO: change for a reference to Specials Move Model
-  specialsMoveset: [
-    {
-      type: String,
-    },
-  ],
+  specialsMoveset: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Special',
+    required: true,
+  },
+
   mainImage: {
     type: String,
     required: true,
