@@ -7,6 +7,7 @@ import {
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showFranchises from '../../utils/list';
+import createFranchise from '../../utils/create';
 
 /**
  * List of Franchises
@@ -41,14 +42,7 @@ const findById = async (request, h) => {
  * @returns The saved Franchise
  */
 const create = async (request, h) => {
-  const franchise = new Franchise(request.payload);
-  const [error, savedFranchise] = await wrapper(franchise.save());
-
-  return error
-    ? h
-        .response({ msg: 'Error creating the Franchise', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(savedFranchise).code(CREATED);
+  return await createFranchise({ request, h }, Franchise);
 };
 
 /**

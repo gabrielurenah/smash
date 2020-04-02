@@ -7,6 +7,7 @@ import {
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showCharacters from '../../utils/list';
+import createCharacter from '../../utils/create';
 
 /**
  * List of Characters
@@ -15,7 +16,7 @@ import showCharacters from '../../utils/list';
  * @returns {JSON} of Characters
  */
 const list = async (request, h) => {
-  return showCharacters({ request, h }, Character, 'characters');
+  return await showCharacters({ request, h }, Character);
 };
 
 /**
@@ -41,14 +42,7 @@ const findById = async (request, h) => {
  * @returns The saved Character
  */
 const create = async (request, h) => {
-  const character = new Character(request.payload);
-  const [error, savedCharacter] = await wrapper(character.save());
-
-  return error
-    ? h
-        .response({ msg: 'Error creating the Character', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(savedCharacter).code(CREATED);
+  return await createCharacter({ request, h }, Character);
 };
 
 /**

@@ -7,6 +7,7 @@ import {
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showSpecials from '../../utils/list';
+import createSpecial from '../../utils/create';
 
 /**
  * List of Specials
@@ -41,14 +42,7 @@ const findById = async (request, h) => {
  * @returns The saved Special
  */
 const create = async (request, h) => {
-  const special = new Special(request.payload);
-  const [error, savedSpecial] = await wrapper(special.save());
-
-  return error
-    ? h
-        .response({ msg: 'Error creating the Special', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(savedSpecial).code(CREATED);
+  return await createSpecial({ request, h }, Special);
 };
 
 /**
