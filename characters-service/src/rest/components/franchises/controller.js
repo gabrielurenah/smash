@@ -5,9 +5,9 @@ import {
   CREATED,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
-import showFranchises from '../../utils/list';
-import createFranchise from '../../utils/create';
-import removeFranchise from '../../utils/remove';
+import showFranchises from '../../helpers/list';
+import createFranchise from '../../helpers/create';
+import removeFranchise from '../../helpers/remove';
 
 /**
  * List of Franchises

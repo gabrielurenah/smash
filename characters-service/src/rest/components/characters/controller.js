@@ -5,9 +5,9 @@ import {
   CREATED,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
-import showCharacters from '../../utils/list';
-import createCharacter from '../../utils/create';
-import removeCharacter from '../../utils/remove';
+import showCharacters from '../../helpers/list';
+import createCharacter from '../../helpers/create';
+import removeCharacter from '../../helpers/remove';
 
 /**
  * List of Characters

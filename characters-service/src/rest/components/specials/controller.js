@@ -5,9 +5,9 @@ import {
   CREATED,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
-import showSpecials from '../../utils/list';
-import createSpecial from '../../utils/create';
-import removeSpecial from '../../utils/remove';
+import showSpecials from '../../helpers/list';
+import createSpecial from '../../helpers/create';
+import removeSpecial from '../../helpers/remove';
 
 /**
  * List of Specials

@@ -1,4 +1,4 @@
-import wrapper from './async';
+import wrapper from '../utils/async';
 import { INTERNAL_SERVER_ERROR, NO_CONTENT } from '../../config/statusCodes';
 
 export default async function({ request, h }, Model) {
