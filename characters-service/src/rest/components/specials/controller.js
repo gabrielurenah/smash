@@ -1,13 +1,10 @@
 import Special from './model';
-import {
-  OK,
-  INTERNAL_SERVER_ERROR,
-  CREATED,
-} from '../../../config/statusCodes';
+import { INTERNAL_SERVER_ERROR, CREATED } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showSpecials from '../../helpers/list';
 import createSpecial from '../../helpers/create';
 import removeSpecial from '../../helpers/remove';
+import findOneSpecial from '../../helpers/findById';
 
 /**
  * List of Specials
@@ -26,13 +23,7 @@ const list = async (request, h) => {
  * @returns {JSON} of a Special
  */
 const findById = async (request, h) => {
-  const [error, special] = await wrapper(
-    Special.findById({ _id: request.params.id }),
-  );
-
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ special }).code(OK);
+  return await findOneSpecial({ request, h }, Special);
 };
 
 /**

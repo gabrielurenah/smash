@@ -1,13 +1,10 @@
 import Franchise from './model';
-import {
-  OK,
-  INTERNAL_SERVER_ERROR,
-  CREATED,
-} from '../../../config/statusCodes';
+import { INTERNAL_SERVER_ERROR, CREATED } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showFranchises from '../../helpers/list';
 import createFranchise from '../../helpers/create';
 import removeFranchise from '../../helpers/remove';
+import findOneFranchise from '../../helpers/findById';
 
 /**
  * List of Franchises
@@ -26,13 +23,7 @@ const list = async (request, h) => {
  * @returns {JSON} of a Franchise
  */
 const findById = async (request, h) => {
-  const [error, franchise] = await wrapper(
-    Franchise.findById({ _id: request.params.id }),
-  );
-
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ franchise }).code(OK);
+  return await findOneFranchise({ request, h }, Franchise);
 };
 
 /**

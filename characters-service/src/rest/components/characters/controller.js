@@ -1,13 +1,10 @@
 import Character from './model';
-import {
-  OK,
-  INTERNAL_SERVER_ERROR,
-  CREATED,
-} from '../../../config/statusCodes';
+import { INTERNAL_SERVER_ERROR, CREATED } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showCharacters from '../../helpers/list';
 import createCharacter from '../../helpers/create';
 import removeCharacter from '../../helpers/remove';
+import findOneCharacter from '../../helpers/findById';
 
 /**
  * List of Characters
@@ -26,13 +23,7 @@ const list = async (request, h) => {
  * @returns {JSON} of a Character
  */
 const findById = async (request, h) => {
-  const [error, characters] = await wrapper(
-    Character.findById({ _id: request.params.id }),
-  );
-
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ characters }).code(OK);
+  return await findOneCharacter({ request, h }, Character);
 };
 
 /**
