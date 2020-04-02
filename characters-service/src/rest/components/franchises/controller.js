@@ -79,7 +79,7 @@ const update = async (request, h) => {
 };
 
 /**
- * Removes a specific Genre
+ * Removes a specific Franchise
  * @param {Object} request
  * @param {Object} h
  * @returns status of NO_CONTENT.

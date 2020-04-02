@@ -1,7 +1,11 @@
 import Hapi from '@hapi/hapi';
 import { PORT } from './config/dotenv';
 import connectToDB from './services/mongo';
-import { charactersRoutes, franchisesRoutes } from './config/routes';
+import {
+  charactersRoutes,
+  franchisesRoutes,
+  specialsRoutes,
+} from './config/routes';
 
 const server = Hapi.server({
   port: PORT,
@@ -17,6 +21,7 @@ server.route({
 });
 server.route(charactersRoutes);
 server.route(franchisesRoutes);
+server.route(specialsRoutes);
 
 const init = async () => {
   await server.start();
