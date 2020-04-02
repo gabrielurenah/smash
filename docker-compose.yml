@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - ./characters-service:/opt/app
+      - /opt/app/node_modules
     links:
       - characters-service-db
     environment:
@@ -22,6 +23,7 @@ services:
       - 0.0.0.0:7200:27017
     logging:
       driver: 'none'
+
   # P L A Y E R S
   players-service:
     build:
@@ -33,6 +35,9 @@ services:
       - DB_URI=postgres://user:password@players-service-db/db?charset=UTF8
     volumes:
       - ./players-service:/opt/app
+      - /opt/app/node_modules
+    ports:
+      - 7101:7101
   # P O S T G R E S Q L- D B
   players-service-db:
     container_name: postgres
