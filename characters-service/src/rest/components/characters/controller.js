@@ -1,6 +1,6 @@
-import { OK, INTERNAL_SERVER_ERROR } from '../../config/statusCodes';
+import { OK, INTERNAL_SERVER_ERROR } from '../../../config/statusCodes';
 import Character from './model';
-import wrapper from '../utils/async';
+import wrapper from '../../utils/async';
 
 /**
  * List of Characters

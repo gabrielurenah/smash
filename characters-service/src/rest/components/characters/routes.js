@@ -1,5 +1,5 @@
 import { list } from './controller';
-import { URL_CHARACTERS } from '../../config/urls';
+import { URL_CHARACTERS } from '../../../config/urls';
 
 export const charactersRoutes = [
   {

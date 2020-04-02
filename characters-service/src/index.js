@@ -1,7 +1,7 @@
 import Hapi from '@hapi/hapi';
 import { PORT } from './config/dotenv';
 import connectToDB from './services/mongo';
-import { charactersRoutes } from './config/routes';
+import { charactersRoutes, franchisesRoutes } from './config/routes';
 
 const server = Hapi.server({
   port: PORT,
@@ -16,9 +16,11 @@ server.route({
   handler: () => 'Hello World!',
 });
 server.route(charactersRoutes);
+server.route(franchisesRoutes);
 
 const init = async () => {
   await server.start();
+  console.log('character service is  🏃‍♂️💨 on', server.info.uri);
 };
 
 process.on('unhandledRejection', err => {
