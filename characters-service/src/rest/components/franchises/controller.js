@@ -6,6 +6,7 @@ import {
   NO_CONTENT,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
+import showFranchises from '../../utils/list';
 
 /**
  * List of Franchises
@@ -14,10 +15,7 @@ import wrapper from '../../utils/async';
  * @returns {JSON} of Franchise
  */
 const list = async (request, h) => {
-  const [error, franchises] = await wrapper(Franchise.find());
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ franchises }).code(OK);
+  return showFranchises({ request, h }, Franchise);
 };
 
 /**

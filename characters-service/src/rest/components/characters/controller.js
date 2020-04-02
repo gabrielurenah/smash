@@ -6,6 +6,7 @@ import {
   NO_CONTENT,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
+import showCharacters from '../../utils/list';
 
 /**
  * List of Characters
@@ -14,10 +15,7 @@ import wrapper from '../../utils/async';
  * @returns {JSON} of Characters
  */
 const list = async (request, h) => {
-  const [err, characters] = await wrapper(Character.find());
-  return err
-    ? h.response({ err }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ characters }).code(OK);
+  return showCharacters({ request, h }, Character, 'characters');
 };
 
 /**

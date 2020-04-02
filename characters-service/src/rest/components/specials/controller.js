@@ -6,6 +6,7 @@ import {
   NO_CONTENT,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
+import showSpecials from '../../utils/list';
 
 /**
  * List of Specials
@@ -14,10 +15,7 @@ import wrapper from '../../utils/async';
  * @returns {JSON} of Specials
  */
 const list = async (request, h) => {
-  const [error, specials] = await wrapper(Special.find());
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ specials }).code(OK);
+  return showSpecials({ request, h }, Special);
 };
 
 /**
