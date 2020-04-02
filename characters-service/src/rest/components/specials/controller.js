@@ -1,10 +1,9 @@
 import Special from './model';
-import { INTERNAL_SERVER_ERROR, CREATED } from '../../../config/statusCodes';
-import wrapper from '../../utils/async';
-import showSpecials from '../../helpers/list';
 import createSpecial from '../../helpers/create';
-import removeSpecial from '../../helpers/remove';
 import findOneSpecial from '../../helpers/findById';
+import removeSpecial from '../../helpers/remove';
+import showSpecials from '../../helpers/list';
+import updateSpecial from '../../helpers/update';
 
 /**
  * List of Specials
@@ -43,22 +42,7 @@ const create = async (request, h) => {
  * @returns The Special updated
  */
 const update = async (request, h) => {
-  const [error, updatedSpecial] = await wrapper(
-    Special.findByIdAndUpdate(
-      { _id: request.params.id },
-      { $set: request.payload },
-      { new: true },
-    ),
-  );
-
-  return error
-    ? h
-        .response({
-          msg: 'Error updating Special',
-          error,
-        })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(updatedSpecial).code(CREATED);
+  return await updateSpecial({ request, h }, Special);
 };
 
 /**

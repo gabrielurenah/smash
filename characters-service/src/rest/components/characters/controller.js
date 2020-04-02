@@ -1,10 +1,9 @@
 import Character from './model';
-import { INTERNAL_SERVER_ERROR, CREATED } from '../../../config/statusCodes';
-import wrapper from '../../utils/async';
-import showCharacters from '../../helpers/list';
 import createCharacter from '../../helpers/create';
-import removeCharacter from '../../helpers/remove';
 import findOneCharacter from '../../helpers/findById';
+import removeCharacter from '../../helpers/remove';
+import showCharacters from '../../helpers/list';
+import updateCharacter from '../../helpers/update';
 
 /**
  * List of Characters
@@ -43,22 +42,7 @@ const create = async (request, h) => {
  * @returns The Character updated
  */
 const update = async (request, h) => {
-  const [error, updatedCharacter] = await wrapper(
-    Character.findByIdAndUpdate(
-      { _id: request.params.id },
-      { $set: request.payload },
-      { new: true },
-    ),
-  );
-
-  return error
-    ? h
-        .response({
-          msg: 'Error updating Character',
-          error,
-        })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(updatedCharacter).code(CREATED);
+  return await updateCharacter({ request, h }, Character);
 };
 
 /**

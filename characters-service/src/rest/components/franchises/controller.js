@@ -1,10 +1,9 @@
 import Franchise from './model';
-import { INTERNAL_SERVER_ERROR, CREATED } from '../../../config/statusCodes';
-import wrapper from '../../utils/async';
-import showFranchises from '../../helpers/list';
 import createFranchise from '../../helpers/create';
-import removeFranchise from '../../helpers/remove';
 import findOneFranchise from '../../helpers/findById';
+import removeFranchise from '../../helpers/remove';
+import showFranchises from '../../helpers/list';
+import updateFranchise from '../../helpers/update';
 
 /**
  * List of Franchises
@@ -43,22 +42,7 @@ const create = async (request, h) => {
  * @returns The Franchise updated
  */
 const update = async (request, h) => {
-  const [error, updatedFranchise] = await wrapper(
-    Franchise.findByIdAndUpdate(
-      { _id: request.params.id },
-      { $set: request.payload },
-      { new: true },
-    ),
-  );
-
-  return error
-    ? h
-        .response({
-          msg: 'Error updating franchise',
-          error,
-        })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(updatedFranchise).code(CREATED);
+  return await updateFranchise({ request, h }, Franchise);
 };
 
 /**
