@@ -3,11 +3,11 @@ import {
   OK,
   INTERNAL_SERVER_ERROR,
   CREATED,
-  NO_CONTENT,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showCharacters from '../../utils/list';
 import createCharacter from '../../utils/create';
+import removeCharacter from '../../utils/remove';
 
 /**
  * List of Characters
@@ -77,17 +77,7 @@ const update = async (request, h) => {
  * @returns status of NO_CONTENT.
  */
 const remove = async (request, h) => {
-  const [error, _] = await wrapper(
-    Character.findByIdAndRemove({
-      _id: request.params.id,
-    }),
-  );
-
-  return error
-    ? h
-        .response({ msg: 'Error deleting Character', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response().code(NO_CONTENT);
+  return await removeCharacter({ request, h }, Character);
 };
 
 export { list, findById, create, update, remove };

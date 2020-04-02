@@ -3,11 +3,11 @@ import {
   OK,
   INTERNAL_SERVER_ERROR,
   CREATED,
-  NO_CONTENT,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showSpecials from '../../utils/list';
 import createSpecial from '../../utils/create';
+import removeSpecial from '../../utils/remove';
 
 /**
  * List of Specials
@@ -77,17 +77,7 @@ const update = async (request, h) => {
  * @returns status of NO_CONTENT.
  */
 const remove = async (request, h) => {
-  const [error, _] = await wrapper(
-    Special.findByIdAndRemove({
-      _id: request.params.id,
-    }),
-  );
-
-  return error
-    ? h
-        .response({ msg: 'Error deleting Special', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response().code(NO_CONTENT);
+  return await removeSpecial({ request, h }, Special);
 };
 
 export { list, findById, create, update, remove };

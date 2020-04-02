@@ -3,11 +3,11 @@ import {
   OK,
   INTERNAL_SERVER_ERROR,
   CREATED,
-  NO_CONTENT,
 } from '../../../config/statusCodes';
 import wrapper from '../../utils/async';
 import showFranchises from '../../utils/list';
 import createFranchise from '../../utils/create';
+import removeFranchise from '../../utils/remove';
 
 /**
  * List of Franchises
@@ -77,17 +77,7 @@ const update = async (request, h) => {
  * @returns status of NO_CONTENT.
  */
 const remove = async (request, h) => {
-  const [error, _] = await wrapper(
-    Franchise.findByIdAndRemove({
-      _id: request.params.id,
-    }),
-  );
-
-  return error
-    ? h
-        .response({ msg: 'Error deleting franchise', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response().code(NO_CONTENT);
+  return await removeFranchise({ request, h }, Franchise);
 };
 
 export { list, findById, create, update, remove };
