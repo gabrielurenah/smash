@@ -1,11 +1,9 @@
 import Character from './model';
-import {
-  OK,
-  INTERNAL_SERVER_ERROR,
-  CREATED,
-  NO_CONTENT,
-} from '../../../config/statusCodes';
-import wrapper from '../../utils/async';
+import createCharacter from '../../helpers/create';
+import findOneCharacter from '../../helpers/findById';
+import removeCharacter from '../../helpers/remove';
+import showCharacters from '../../helpers/list';
+import updateCharacter from '../../helpers/update';
 
 /**
  * List of Characters
@@ -14,10 +12,7 @@ import wrapper from '../../utils/async';
  * @returns {JSON} of Characters
  */
 const list = async (request, h) => {
-  const [err, characters] = await wrapper(Character.find());
-  return err
-    ? h.response({ err }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ characters }).code(OK);
+  return await showCharacters({ request, h }, Character);
 };
 
 /**
@@ -27,13 +22,7 @@ const list = async (request, h) => {
  * @returns {JSON} of a Character
  */
 const findById = async (request, h) => {
-  const [error, characters] = await wrapper(
-    Character.findById({ _id: request.params.id }),
-  );
-
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ characters }).code(OK);
+  return await findOneCharacter({ request, h }, Character);
 };
 
 /**
@@ -43,14 +32,7 @@ const findById = async (request, h) => {
  * @returns The saved Character
  */
 const create = async (request, h) => {
-  const character = new Character(request.payload);
-  const [error, savedCharacter] = await wrapper(character.save());
-
-  return error
-    ? h
-        .response({ msg: 'Error creating the Character', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(savedCharacter).code(CREATED);
+  return await createCharacter({ request, h }, Character);
 };
 
 /**
@@ -60,22 +42,7 @@ const create = async (request, h) => {
  * @returns The Character updated
  */
 const update = async (request, h) => {
-  const [error, updatedCharacter] = await wrapper(
-    Character.findByIdAndUpdate(
-      { _id: request.params.id },
-      { $set: request.payload },
-      { new: true },
-    ),
-  );
-
-  return error
-    ? h
-        .response({
-          msg: 'Error updating Character',
-          error,
-        })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(updatedCharacter).code(CREATED);
+  return await updateCharacter({ request, h }, Character);
 };
 
 /**
@@ -85,17 +52,7 @@ const update = async (request, h) => {
  * @returns status of NO_CONTENT.
  */
 const remove = async (request, h) => {
-  const [error, _] = await wrapper(
-    Character.findByIdAndRemove({
-      _id: request.params.id,
-    }),
-  );
-
-  return error
-    ? h
-        .response({ msg: 'Error deleting Character', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response().code(NO_CONTENT);
+  return await removeCharacter({ request, h }, Character);
 };
 
 export { list, findById, create, update, remove };

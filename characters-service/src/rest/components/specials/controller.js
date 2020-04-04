@@ -1,11 +1,9 @@
 import Special from './model';
-import {
-  OK,
-  INTERNAL_SERVER_ERROR,
-  CREATED,
-  NO_CONTENT,
-} from '../../../config/statusCodes';
-import wrapper from '../../utils/async';
+import createSpecial from '../../helpers/create';
+import findOneSpecial from '../../helpers/findById';
+import removeSpecial from '../../helpers/remove';
+import showSpecials from '../../helpers/list';
+import updateSpecial from '../../helpers/update';
 
 /**
  * List of Specials
@@ -14,10 +12,7 @@ import wrapper from '../../utils/async';
  * @returns {JSON} of Specials
  */
 const list = async (request, h) => {
-  const [error, specials] = await wrapper(Special.find());
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ specials }).code(OK);
+  return showSpecials({ request, h }, Special);
 };
 
 /**
@@ -27,13 +22,7 @@ const list = async (request, h) => {
  * @returns {JSON} of a Special
  */
 const findById = async (request, h) => {
-  const [error, special] = await wrapper(
-    Special.findById({ _id: request.params.id }),
-  );
-
-  return error
-    ? h.response({ error }).code(INTERNAL_SERVER_ERROR)
-    : h.response({ special }).code(OK);
+  return await findOneSpecial({ request, h }, Special);
 };
 
 /**
@@ -43,14 +32,7 @@ const findById = async (request, h) => {
  * @returns The saved Special
  */
 const create = async (request, h) => {
-  const special = new Special(request.payload);
-  const [error, savedSpecial] = await wrapper(special.save());
-
-  return error
-    ? h
-        .response({ msg: 'Error creating the Special', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(savedSpecial).code(CREATED);
+  return await createSpecial({ request, h }, Special);
 };
 
 /**
@@ -60,22 +42,7 @@ const create = async (request, h) => {
  * @returns The Special updated
  */
 const update = async (request, h) => {
-  const [error, updatedSpecial] = await wrapper(
-    Special.findByIdAndUpdate(
-      { _id: request.params.id },
-      { $set: request.payload },
-      { new: true },
-    ),
-  );
-
-  return error
-    ? h
-        .response({
-          msg: 'Error updating Special',
-          error,
-        })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response(updatedSpecial).code(CREATED);
+  return await updateSpecial({ request, h }, Special);
 };
 
 /**
@@ -85,17 +52,7 @@ const update = async (request, h) => {
  * @returns status of NO_CONTENT.
  */
 const remove = async (request, h) => {
-  const [error, _] = await wrapper(
-    Special.findByIdAndRemove({
-      _id: request.params.id,
-    }),
-  );
-
-  return error
-    ? h
-        .response({ msg: 'Error deleting Special', error })
-        .code(INTERNAL_SERVER_ERROR)
-    : h.response().code(NO_CONTENT);
+  return await removeSpecial({ request, h }, Special);
 };
 
 export { list, findById, create, update, remove };
