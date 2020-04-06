@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  # A P I  G A T E W A Y
+  api-gateway:
+    build:
+      context: './api-gateway'
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./api-gateway:/opt/app
+      - /opt/app/node_modules
+    depends_on:
+      - characters-service
+      - players-service
+    ports:
+      - 7000:7000
   # C H A R A C T E R S
   characters-service:
     build:
@@ -9,7 +22,7 @@ services:
     volumes:
       - ./characters-service:/opt/app
       - /opt/app/node_modules
-    links:
+    depends_on:
       - characters-service-db
     environment:
       - MONGO_URI=mongodb://mongo:27017/smash
@@ -29,7 +42,7 @@ services:
     build:
       context: './players-service'
       dockerfile: Dockerfile.dev
-    links:
+    depends_on:
       - players-service-db
     environment:
       - DB_URI=postgres://user:password@players-service-db/db?charset=UTF8
