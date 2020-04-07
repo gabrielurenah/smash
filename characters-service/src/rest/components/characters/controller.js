@@ -12,7 +12,10 @@ import updateCharacter from '../../helpers/update';
  * @returns {JSON} of Characters
  */
 const list = async (request, h) => {
-  return await showCharacters({ request, h }, Character);
+  return await showCharacters(
+    { request, h },
+    { Model: Character, populate: 'franchise specialsMoveset' },
+  );
 };
 
 /**

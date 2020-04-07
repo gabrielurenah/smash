@@ -17,7 +17,6 @@ const Character = mongoose.Schema({
     ref: 'Special',
     required: true,
   },
-
   mainImage: {
     type: String,
     required: true,
@@ -25,6 +24,11 @@ const Character = mongoose.Schema({
   stockImage: {
     type: String,
     required: true,
+  },
+  source: {
+    type: String,
+    required: true,
+    enum: ['SSB64', 'SSBM', 'SSBB', 'SSB4', 'SSBU'],
   },
 });
 

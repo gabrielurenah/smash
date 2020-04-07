@@ -12,7 +12,7 @@ import updateSpecial from '../../helpers/update';
  * @returns {JSON} of Specials
  */
 const list = async (request, h) => {
-  return showSpecials({ request, h }, Special);
+  return showSpecials({ request, h }, { Model: Special });
 };
 
 /**

@@ -12,7 +12,7 @@ import updateFranchise from '../../helpers/update';
  * @returns {JSON} of Franchise
  */
 const list = async (request, h) => {
-  return showFranchises({ request, h }, Franchise);
+  return showFranchises({ request, h }, { Model: Franchise });
 };
 
 /**
