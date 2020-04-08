@@ -7,6 +7,10 @@ const typeDefs = gql`
     playerTag: String!
   }
 
+  type Mutation {
+    createPlayer(fullName: String!, playerTag: String!): Player
+  }
+
   type Query {
     players: [Player!]!
   }

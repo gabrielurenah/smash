@@ -7,8 +7,10 @@ import { PORT } from '../config/dotenv';
 
 import resolvers from '#root/graphql/resolvers';
 import typeDefs from '#root/graphql/typeDefs';
+import formatGraphQLErrors from './formatGraphQLErrors';
 
 const apolloServer = new ApolloServer({
+  formatError: formatGraphQLErrors,
   resolvers,
   typeDefs,
 });
