@@ -6,6 +6,12 @@ export class Player extends Model {}
 
 Player.init(
   {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     fullName: {
       allowNull: false,
       type: DataTypes.STRING,

@@ -1,5 +1,5 @@
 import express from 'express';
-import { show } from '../controllers/players';
+import { show, create } from '../controllers/players';
 
 const router = express.Router();
 
@@ -9,5 +9,12 @@ const router = express.Router();
  * @access Public
  */
 router.get('/', show);
+
+/**
+ * @route POST '/'
+ * @returns {JSON} of player created
+ * @access Public
+ */
+router.post('/', create);
 
 export default router;
