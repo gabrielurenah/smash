@@ -1,11 +1,7 @@
+import PlayersService from '#root/adapters/PlayersService';
+
 const playersResolver = async () => {
-  return [
-    {
-      fullName: 'Leonardo Lopez Perez',
-      id: 1,
-      playerTag: 'MKLeo',
-    },
-  ];
+  return await PlayersService.fetchAllPlayers();
 };
 
 export default playersResolver;
