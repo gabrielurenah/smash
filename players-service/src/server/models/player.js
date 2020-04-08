@@ -19,6 +19,7 @@ Player.init(
     playerTag: {
       allowNull: false,
       type: DataTypes.STRING,
+      unique: true,
     },
   },
   {
