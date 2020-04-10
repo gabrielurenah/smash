@@ -51,10 +51,10 @@ You need to have `docker` and `docker-compose` installed to run this project. If
 
 ### For Pull Request main title/commit use the following:
 
-- feat: 🔥 _description..._
-- fix: 🎊 _description..._
-- docs: 📝 _description..._
-- style: ✨ _description..._
-- refactor: 🎬 _description..._
-- test: 🧪 _description..._
-- chore: 🤖 _description..._
+- 🔥feat: _new feature_
+- 🎊fix: _bug fix_
+- 📝docs: _documentation_
+- ✨style: _formatting, missing semi colons, etc_
+- 🎬refactor: _refactoring production code_
+- 🧪test: _adding tests, refactoring test_
+- 🤖chore: _updating build tasks, package manager configs, etc_
