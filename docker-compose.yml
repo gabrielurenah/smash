@@ -25,12 +25,12 @@ services:
     depends_on:
       - characters-service-db
     environment:
-      - MONGO_URI=mongodb://mongo:27017/smash
+      - MONGO_URI=mongodb://smash_mongo:27017/smash
     ports:
       - 7100:7100
   # M O N G O - D B
   characters-service-db:
-    container_name: mongo
+    container_name: smash_mongo
     image: mongo
     ports:
       - 0.0.0.0:7200:27017
