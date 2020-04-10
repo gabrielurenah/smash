@@ -1,4 +1,4 @@
-import { Player } from '#root/server/models/player';
+import { Player, validatePlayerModel } from '#root/server/models/player';
 import {
   OK,
   CREATED,
@@ -8,6 +8,7 @@ import {
 } from '#root/config/statusCodes';
 import wrapper from '../utils/async';
 import generateUUID from '../helpers/generateUUID';
+import validateData from '../helpers/validateData';
 
 const show = async (req, res) => {
   const [error, players] = await wrapper(Player.findAll());
@@ -18,8 +19,14 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
+  const [err, value] = await validateData(req.body, validatePlayerModel);
+
+  if (err) {
+    return res.status(err.status).send(err.message);
+  }
+
   const [error, player] = await wrapper(
-    Player.create({ ...req.body, id: generateUUID() }),
+    Player.create({ ...value, id: generateUUID() }),
   );
 
   return error

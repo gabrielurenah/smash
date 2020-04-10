@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import Joi from '@hapi/joi';
 
 import sequelize from '#root/db/connection';
 
@@ -19,7 +20,6 @@ Player.init(
     playerTag: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
     },
   },
   {
@@ -27,3 +27,16 @@ Player.init(
     sequelize,
   },
 );
+
+export const validatePlayerModel = player => {
+  const model = Joi.object({
+    fullName: Joi.string()
+      .max(255)
+      .required(),
+    playerTag: Joi.string()
+      .max(255)
+      .required(),
+  }).options({ stripUnknown: true });
+
+  return model.validate(player);
+};
