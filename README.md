@@ -61,4 +61,4 @@ You can follow this guidelines:
 - 🧪test: _adding tests, refactoring test_
 - 🤖chore: _updating build tasks, package manager configs, etc_
 
-Or you can follow the guidelines in the [`gitmoji` page](https://gitmoji.carloscuesta.me/)👨‍💻👩‍💻
+**_Or you can follow the guidelines in the [`gitmoji` page](https://gitmoji.carloscuesta.me/)👨‍💻👩‍💻_**
