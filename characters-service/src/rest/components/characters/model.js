@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Joi from '@hapi/joi';
 
 const Character = mongoose.Schema({
   name: {
@@ -31,5 +32,16 @@ const Character = mongoose.Schema({
     enum: ['SSB64', 'SSBM', 'SSBB', 'SSB4', 'SSBU'],
   },
 });
+
+export const validateCharacter = character => {
+  const schema = Joi.object({
+    name: Joi.string()
+      .min(4)
+      .max(35)
+      .required(),
+  }).options({ stripUnknown: true });
+
+  return schema.validate(character);
+};
 
 export default mongoose.model('Character', Character);

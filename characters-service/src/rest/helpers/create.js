@@ -1,11 +1,23 @@
 import wrapper from '../utils/async';
-import { INTERNAL_SERVER_ERROR, CREATED } from '../../config/statusCodes';
+import {
+  INTERNAL_SERVER_ERROR,
+  CREATED,
+  BAD_REQUEST,
+} from '#root/config/statusCodes';
+import { validateCharacter } from '../components/characters/model';
 
 export default async function({ request, h }, Model) {
   //make model name singular
   const name = Model.collection.name.slice(0, -1);
 
-  const data = new Model(request.payload);
+  const { err, value } = await validateCharacter(request.payload);
+
+  if (err) {
+    return h.response(error.details[0].message).status(BAD_REQUEST);
+  }
+
+  console.log(err, value);
+  const data = new Model(value);
   const [error, savedData] = await wrapper(data.save());
 
   return error
