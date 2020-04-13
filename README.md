@@ -51,6 +51,8 @@ You need to have `docker` and `docker-compose` installed to run this project. If
 
 ### For Pull Request main title/commit use the following:
 
+You can follow this guidelines:
+
 - 🔥feat: _new feature_
 - 🎊fix: _bug fix_
 - 📝docs: _documentation_
@@ -58,3 +60,5 @@ You need to have `docker` and `docker-compose` installed to run this project. If
 - 🎬refactor: _refactoring production code_
 - 🧪test: _adding tests, refactoring test_
 - 🤖chore: _updating build tasks, package manager configs, etc_
+
+Or you can follow the guidelines in the [`gitmoji` page](https://gitmoji.carloscuesta.me/)👨‍💻👩‍💻
