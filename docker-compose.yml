@@ -63,3 +63,12 @@ services:
       - 0.0.0.0:7201:5432
     logging:
       driver: 'none'
+
+  # Simple GUI for Postgres
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    logging:
+      driver: 'none'
