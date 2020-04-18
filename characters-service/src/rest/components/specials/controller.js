@@ -1,3 +1,4 @@
+import faker from 'faker';
 import Special from './model';
 import createSpecial from '../../helpers/create';
 import findOneSpecial from '../../helpers/findById';
@@ -32,7 +33,12 @@ const findById = async (request, h) => {
  * @returns The saved Special
  */
 const create = async (request, h) => {
-  return await createSpecial({ request, h }, Special);
+  return await createSpecial({ request, h }, Special, {
+    neutral: faker.hacker.adjective(),
+    up: faker.hacker.adjective(),
+    down: faker.hacker.abbreviation(),
+    side: faker.hacker.noun(),
+  });
 };
 
 /**
