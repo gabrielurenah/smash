@@ -34,4 +34,4 @@ module.exports.up = (queryInterface, DataTypes) => {
   );
 };
 
-module.exports.down = queryInterface => queryInterface.dropTable('players');
+module.exports.down = (queryInterface) => queryInterface.dropTable('players');

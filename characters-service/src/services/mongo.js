@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { DB_URI } from '../config/dotenv';
 
-export default function() {
+export default function () {
   mongoose
     .connect(DB_URI, {
       useNewUrlParser: true,
@@ -12,7 +12,7 @@ export default function() {
     .then(() => {
       console.log('Mongo => connection Succesfull👌');
     })
-    .catch(err => {
+    .catch((err) => {
       console.log('ERROR⚠️', err);
     });
 }
