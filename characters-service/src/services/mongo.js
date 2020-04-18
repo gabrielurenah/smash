@@ -12,7 +12,7 @@ export default function () {
     .then(() => {
       console.log('Mongo => connection Succesfull👌');
     })
-    .catch((err) => {
+    .catch(err => {
       console.log('ERROR⚠️', err);
     });
 }

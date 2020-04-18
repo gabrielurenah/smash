@@ -8,7 +8,7 @@ export default async function ({ request, h }, attributes) {
 
   //map query params to find all documents that follow a regex
   Object.keys(params).map(
-    (key) =>
+    key =>
       (params = { ...params, [key]: { $regex: params[key], $options: 'i' } }),
   );
 

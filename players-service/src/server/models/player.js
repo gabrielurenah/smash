@@ -28,7 +28,7 @@ Player.init(
   },
 );
 
-export const validatePlayerModel = (player) => {
+export const validatePlayerModel = player => {
   const model = Joi.object({
     fullName: Joi.string().max(255).required(),
     playerTag: Joi.string().max(255).required(),

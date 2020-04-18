@@ -3,7 +3,7 @@ import playerRoutes from './player';
 import sponsorsRoutes from './sponsor';
 import eventsRoutes from './event';
 
-const setupRoutes = (app) => {
+const setupRoutes = app => {
   app.use(URL_PLAYERS, playerRoutes);
   app.use(URL_SPONSORS, sponsorsRoutes);
   app.use(URL_EVENTS, eventsRoutes);
