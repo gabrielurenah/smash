@@ -4,6 +4,7 @@ api-gateway/package-lock.json
 characters-service/node_modules
 characters-service/package-lock.json
 characters-service/coverage
+characters-service/.env
 
 players-service/node_modules
 players-service/package-lock.json
