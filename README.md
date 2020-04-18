@@ -17,15 +17,32 @@ This project is based on the [competitive scene of the video game series Super S
 
 # Minimum setup needed to run the project
 
-## Docker
+- Clone the repository:
+  ```bash
+  git clone https://github.com/gabrielurenah/smash.git
+  ```
 
 You need to have `docker` and `docker-compose` installed to run this project. If you don't have it installed you can follow [this guide](https://docs.docker.com/install/).
 
-- First clone this repository.
-- After that open your terminal of preference and navigate to the directory you cloned this project.
-- type the command `docker-compose up`
+- After that open your terminal of preference and navigate to the directory you cloned this project. And type the following command:
+  ```bash
+  docker-compose up
+  ```
 
 # Scripts used on the project
+
+### general commands
+
+- `npm run lint`: Shows linting errors and warnings following linting rules
+- `npm run prettier`: Formats files using prettier rules
+- `npm run up`: Starts the project in development mode
+- `npm run upd`: Starts the project in development as a daemon
+- `npm run dev`: Builds the containers and starts the project
+- `npm run stop`: Stops the project and saves the containers and `node_modules`
+
+### api-gateway
+
+- `npm run watch`: Starts the gateway in a development environment
 
 ### character-service
 
