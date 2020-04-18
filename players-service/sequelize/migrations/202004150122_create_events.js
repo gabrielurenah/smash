@@ -16,10 +16,6 @@ module.exports.up = (queryInterface, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      dateOfEvent: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
       linkToEvent: {
         allowNull: false,
         type: DataTypes.STRING,
