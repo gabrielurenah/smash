@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prettier": "prettier --write \"**/*.+(js|jsx|json|md)\"",
-    "lint": "eslint --fix \"**/*.+(js|jsx)\""
+    "lint": "eslint --fix \"**/*.+(js|jsx)\"",
+    "up": "docker-compose up",
+    "upd": "docker-compose up -d",
+    "dev": "docker-compose up --build",
+    "stop": "docker-compose down"
   },
   "husky": {
     "hooks": {
