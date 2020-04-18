@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "babel-watch -L src/index.js"
+    "watch": "babel-watch -L src/index.js",
+    "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "lint": "eslint --fix \"**/*.+(js|jsx)\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-watch": "^7.0.0"
+    "babel-watch": "^7.0.0",
+    "eslint": "^6.8.0",
+    "prettier": "^2.0.4"
   },
   "dependencies": {
     "@babel/core": "^7.9.0",

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "babel-watch -L src/index.js"
+    "watch": "babel-watch -L src/index.js",
+    "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "lint": "eslint --fix \"**/*.+(js|jsx)\""
   },
   "keywords": [],
   "author": "",
