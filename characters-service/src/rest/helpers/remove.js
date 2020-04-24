@@ -1,7 +1,7 @@
 import wrapper from '../utils/async';
 import { INTERNAL_SERVER_ERROR, NO_CONTENT } from '../../config/statusCodes';
 
-export default async function({ request, h }, Model) {
+export default async function ({ request, h }, Model) {
   //make model name singular
   const name = Model.collection.name.slice(0, -1);
 

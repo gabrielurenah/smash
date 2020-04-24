@@ -1,16 +1,25 @@
+.DS_Store
+.idea
+.vscode
+
 node_modules
+package.json
 package-lock.json
 
 api-gateway/node_modules
+api-gateway/package.json
 api-gateway/package-lock.json
+api-gateway/coverage
+api-gateway/.env
 
 characters-service/node_modules
+characters-service/package.json
 characters-service/package-lock.json
 characters-service/coverage
 characters-service/.env
 
 players-service/node_modules
+players-service/package.json
 players-service/package-lock.json
 players-service/coverage
-
-.DS_Store
+players-service/.env
