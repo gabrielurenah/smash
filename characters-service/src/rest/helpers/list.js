@@ -1,7 +1,7 @@
 import wrapper from '../utils/async';
 import { INTERNAL_SERVER_ERROR, OK } from '../../config/statusCodes';
 
-export default async function({ request, h }, attributes) {
+export default async function ({ request, h }, attributes) {
   const { Model, populate = '' } = attributes;
   const { name } = Model.collection;
   const { currentPage = 1, perPage = 5, ...query } = request.query;
@@ -13,14 +13,10 @@ export default async function({ request, h }, attributes) {
       (params = { ...params, [key]: { $regex: params[key], $options: 'i' } }),
   );
 
-  console.log(params);
-
   const [err, data] = await wrapper(
     //paginate(query, options)
     Model.paginate(params || {}, { limit: perPage, currentPage, populate }),
   );
-
-  console.log(err);
 
   return err
     ? h.response({ err }).code(INTERNAL_SERVER_ERROR)
