@@ -33,7 +33,7 @@ services:
     container_name: smash_mongo
     image: mongo
     ports:
-      - 0.0.0.0:7200:27017
+      - 27017:27017
     logging:
       driver: 'none'
 
@@ -60,10 +60,9 @@ services:
       - POSTGRES_DB=db
     image: postgres
     ports:
-      - 0.0.0.0:7201:5432
+      - 5432:5432
     logging:
       driver: 'none'
-
   # Simple GUI for Postgres
   adminer:
     image: adminer
@@ -72,3 +71,16 @@ services:
       - 8080:8080
     logging:
       driver: 'none'
+
+  # F R O N T E N D
+  client:
+    container_name: smash_app
+    build:
+      context: './client'
+      dockerfile: Dockerfile.dev
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client:/opt/app
+      - /opt/app/node_modules
