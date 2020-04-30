@@ -2,24 +2,38 @@
 .idea
 .vscode
 
+# root
 node_modules
 package.json
 package-lock.json
 
+# gateway
 api-gateway/node_modules
 api-gateway/package.json
 api-gateway/package-lock.json
 api-gateway/coverage
 api-gateway/.env
 
+# characters
 characters-service/node_modules
 characters-service/package.json
 characters-service/package-lock.json
 characters-service/coverage
 characters-service/.env
 
+# players
 players-service/node_modules
 players-service/package.json
 players-service/package-lock.json
 players-service/coverage
 players-service/.env
+
+# frontend
+client/node_modules
+client/package-lock.json
+client/.env
+client/.pnp
+client/.pnp.js
+client/coverage
+# production
+client/build
