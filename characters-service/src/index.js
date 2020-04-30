@@ -1,6 +1,8 @@
 import Hapi from '@hapi/hapi';
+
+import './services/mongoosePlugins';
 import { PORT } from './config/dotenv';
-import connectToDB from './services/mongo';
+import connectToDB from './services/connection';
 import {
   charactersRoutes,
   franchisesRoutes,
