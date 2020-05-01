@@ -1,6 +1,7 @@
 import Hapi from '@hapi/hapi';
 
 import './services/mongoosePlugins';
+import './services/mongooseObjectValidation';
 import { PORT } from './config/dotenv';
 import connectToDB from './services/connection';
 import {
