@@ -4,6 +4,7 @@ import findOneCharacter from '../../helpers/findById';
 import removeCharacter from '../../helpers/remove';
 import showCharacters from '../../helpers/list';
 import updateCharacter from '../../helpers/update';
+import { validateCharacter } from './model';
 
 /**
  * List of Characters
@@ -35,7 +36,7 @@ const findById = async (request, h) => {
  * @returns The saved Character
  */
 const create = async (request, h) => {
-  return await createCharacter({ request, h }, Character);
+  return await createCharacter({ request, h }, Character, validateCharacter);
 };
 
 /**

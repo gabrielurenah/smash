@@ -1,11 +1,23 @@
 import wrapper from '../utils/async';
-import { INTERNAL_SERVER_ERROR, CREATED } from '../../config/statusCodes';
+import { INTERNAL_SERVER_ERROR, CREATED } from '#root/config/statusCodes';
+import validateData from './validateData';
 
-export default async function({ request, h }, Model, faker) {
+export default async function (
+  { request, h },
+  Model,
+  validationCallback,
+  faker,
+) {
   //make model name singular
   const name = Model.collection.name.slice(0, -1);
 
-  const data = new Model(faker || request.payload);
+  const [err, value] = validationCallback
+    ? await validateData(request.payload, validationCallback)
+    : [null, request.payload];
+
+  if (err) return h.response(err.message).code(err.status);
+
+  const data = new Model(faker || value);
 
   const [error, savedData] = await wrapper(data.save());
 

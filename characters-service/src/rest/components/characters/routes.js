@@ -1,5 +1,6 @@
 import { list, findById, create, update, remove } from './controller';
-import { URL_CHARACTERS } from '../../../config/urls';
+import { URL_CHARACTERS } from '#root/config/urls';
+import { validateCharacter } from './model';
 
 export const charactersRoutes = [
   {

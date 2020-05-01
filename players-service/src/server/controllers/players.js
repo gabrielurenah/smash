@@ -21,9 +21,7 @@ const show = async (req, res) => {
 const create = async (req, res) => {
   const [err, value] = await validateData(req.body, validatePlayerModel);
 
-  if (err) {
-    return res.status(err.status).send(err.message);
-  }
+  if (err) return res.status(err.status).send(err.message);
 
   const [error, player] = await wrapper(
     Player.create({ ...value, id: generateUUID() }),
