@@ -5,6 +5,7 @@ import findOneSpecial from '../../helpers/findById';
 import removeSpecial from '../../helpers/remove';
 import showSpecials from '../../helpers/list';
 import updateSpecial from '../../helpers/update';
+import { validateSpecials } from './model';
 
 /**
  * List of Specials
@@ -33,7 +34,7 @@ const findById = async (request, h) => {
  * @returns The saved Special
  */
 const create = async (request, h) => {
-  return await createSpecial({ request, h }, Special, {
+  return await createSpecial({ request, h }, Special, validateSpecials, {
     neutral: faker.hacker.adjective(),
     up: faker.hacker.adjective(),
     down: faker.hacker.abbreviation(),
