@@ -1,4 +1,4 @@
-import { Sponsor } from '../models/sponsor';
+import { Sponsor, validateSponsorModel } from '../models/sponsor';
 import {
   OK,
   CREATED,
@@ -7,6 +7,7 @@ import {
   BAD_REQUEST,
 } from '#root/config/statusCodes';
 import wrapper from '../utils/async';
+import validateData from '../helpers/validateData';
 
 const show = async (req, res) => {
   const [error, sponsors] = await wrapper(Sponsor.findAll());
@@ -17,7 +18,11 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const [error, sponsor] = await wrapper(Sponsor.create(req.body));
+  const [err, data] = await validateData(req.body, validateSponsorModel);
+
+  if (err) return res.status(BAD_REQUEST).send(err);
+
+  const [error, sponsor] = await wrapper(Sponsor.create(data));
 
   return error
     ? res.status(INTERNAL_SERVER_ERROR).send(error.message)

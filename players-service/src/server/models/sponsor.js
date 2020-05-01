@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import Joi from '@hapi/joi';
 
 import sequelize from '#root/db/connection';
 
@@ -17,3 +18,11 @@ Sponsor.init(
     sequelize,
   },
 );
+
+export const validateSponsorModel = sponsor => {
+  const model = Joi.object({
+    name: Joi.string().max(255).required(),
+  }).options({ stripUnknown: true });
+
+  return model.validate(sponsor);
+};

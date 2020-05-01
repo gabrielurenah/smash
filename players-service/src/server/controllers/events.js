@@ -1,4 +1,4 @@
-import { Event } from '../models/event';
+import { Event, validateEventModel } from '../models/event';
 import {
   OK,
   CREATED,
@@ -7,6 +7,7 @@ import {
   BAD_REQUEST,
 } from '#root/config/statusCodes';
 import wrapper from '../utils/async';
+import validateData from '../helpers/validateData';
 
 const show = async (req, res) => {
   const [error, events] = await wrapper(Event.findAll());
@@ -17,7 +18,11 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const [error, event] = await wrapper(Event.create(req.body));
+  const [err, data] = await validateData(req.body, validateEventModel);
+
+  if (err) return res.status(BAD_REQUEST).send(err);
+
+  const [error, event] = await wrapper(Event.create(data));
 
   return error
     ? res.status(INTERNAL_SERVER_ERROR).send(error.message)
