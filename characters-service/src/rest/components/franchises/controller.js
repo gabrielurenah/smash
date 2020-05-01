@@ -4,6 +4,7 @@ import findOneFranchise from '../../helpers/findById';
 import removeFranchise from '../../helpers/remove';
 import showFranchises from '../../helpers/list';
 import updateFranchise from '../../helpers/update';
+import { validateFranchise } from './model';
 
 /**
  * List of Franchises
@@ -32,7 +33,7 @@ const findById = async (request, h) => {
  * @returns The saved Franchise
  */
 const create = async (request, h) => {
-  return await createFranchise({ request, h }, Franchise);
+  return await createFranchise({ request, h }, Franchise, validateFranchise);
 };
 
 /**
