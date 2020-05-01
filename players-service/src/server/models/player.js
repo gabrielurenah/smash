@@ -30,12 +30,8 @@ Player.init(
 
 export const validatePlayerModel = player => {
   const model = Joi.object({
-    fullName: Joi.string()
-      .max(255)
-      .required(),
-    playerTag: Joi.string()
-      .max(255)
-      .required(),
+    fullName: Joi.string().max(255).required(),
+    playerTag: Joi.string().max(255).required(),
   }).options({ stripUnknown: true });
 
   return model.validate(player);

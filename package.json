@@ -1,0 +1,39 @@
+{
+  "name": "smash",
+  "version": "1.0.0",
+  "description": "This project is based on the [competitive scene of the video game series Super Smash Bros.](https://smashworldtour.com/) created (but not necessarily supported) by [Masahiro Sakurai](https://en.wikipedia.org/wiki/Masahiro_Sakurai)<a href=\"https://twitter.com/Sora_Sakurai?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor\"><img width=\"20\" height=\"20\" src=\"https://logosvector.net/wp-content/uploads/2012/12/new-twitter-logo-vector.png\"></a>. It's purpose is to learn how to built loosely coupled applications. This project will be handled with microservices architecture, where two different services will be managed with Docker and requests will go through an API gateway made in GraphQL.",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write \"**/*.+(js|jsx|md)\"",
+    "lint": "eslint --fix \"**/*.+(js|jsx)\"",
+    "up": "docker-compose up",
+    "upd": "docker-compose up -d",
+    "dev": "docker-compose up --build",
+    "no-cache": "docker-compose build --no-cache && docker-compose up",
+    "stop": "docker-compose down",
+    "burn": "docker-compose down -v"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielurenah/smash.git"
+  },
+  "keywords": [],
+  "author": "Gabriel Urena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrielurenah/smash/issues"
+  },
+  "homepage": "https://github.com/gabrielurenah/smash#readme",
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "husky": "4.2.5",
+    "prettier": "2.0.4",
+    "pretty-quick": "2.0.1"
+  },
+  "dependencies": {}
+}

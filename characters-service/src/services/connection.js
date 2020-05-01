@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { DB_URI } from '../config/dotenv';
 
-export default function() {
+export default function () {
   mongoose
     .connect(DB_URI, {
       useNewUrlParser: true,

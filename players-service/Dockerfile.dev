@@ -1,12 +1,10 @@
-FROM node:12
+FROM node:12-alpine
 
-WORKDIR /opt
+WORKDIR /opt/app
 
 COPY package*.json ./
 
 RUN npm install
-
-WORKDIR /opt/app
 
 COPY . .
 

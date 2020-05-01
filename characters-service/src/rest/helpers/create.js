@@ -6,7 +6,7 @@ import {
 } from '#root/config/statusCodes';
 import { validateCharacter } from '../components/characters/model';
 
-export default async function({ request, h }, Model) {
+export default async function ({ request, h }, Model, faker) {
   //make model name singular
   const name = Model.collection.name.slice(0, -1);
 
@@ -17,7 +17,8 @@ export default async function({ request, h }, Model) {
   }
 
   console.log(err, value);
-  const data = new Model(value);
+  const data = new Model(faker || request.payload);
+
   const [error, savedData] = await wrapper(data.save());
 
   return error
