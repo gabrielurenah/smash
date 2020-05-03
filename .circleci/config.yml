@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
+  working_directory: ~/repo/players-service
   build-and-test:
     executor:
       name: node/default
