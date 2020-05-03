@@ -35,12 +35,13 @@ const Character = mongoose.Schema({
 
 // eslint-disable-next-line no-useless-escape
 const urlRegex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/i;
+const objectIdRegex = /^[a-f\d]{24}$/i;
 
 export const validateCharacter = character => {
   const schema = Joi.object({
     name: Joi.string().min(4).max(100).required(),
-    franchise: Joi.objectId().required(),
-    specialsMoveset: Joi.objectId().required(),
+    franchise: Joi.string().pattern(new RegExp(objectIdRegex)).required(),
+    specialsMoveset: Joi.string().pattern(new RegExp(objectIdRegex)).required(),
     mainImage: Joi.string().pattern(new RegExp(urlRegex)).required(),
     stockImage: Joi.string().pattern(new RegExp(urlRegex)).required(),
     source: Joi.string().required(),
