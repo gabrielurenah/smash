@@ -8,7 +8,7 @@ import { BAD_REQUEST } from '../../config/statusCodes';
  * @return {Array} first value is an error object, the second one is the
  * validated body of the request.
  */
-export default async function (body, validate) {
+export default async function validateData(body, validate) {
   const { value, error } = validate(body);
 
   if (error) {
