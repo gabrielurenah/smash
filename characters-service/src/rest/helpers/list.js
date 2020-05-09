@@ -15,7 +15,11 @@ export default async function ({ request, h }, attributes) {
 
   const [err, data] = await wrapper(
     //paginate(query, options)
-    Model.paginate(params || {}, { limit: perPage, currentPage, populate }),
+    Model.paginate(params || {}, {
+      limit: perPage,
+      page: currentPage,
+      populate,
+    }),
   );
 
   return err
