@@ -31,6 +31,7 @@
   "homepage": "https://github.com/gabrielurenah/smash#readme",
   "devDependencies": {
     "eslint": "6.8.0",
+    "eslint-plugin-react": "7.19.0",
     "husky": "4.2.5",
     "prettier": "2.0.4",
     "pretty-quick": "2.0.1"

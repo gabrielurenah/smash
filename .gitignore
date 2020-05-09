@@ -5,32 +5,16 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# root of the project
-node_modules
-package-lock.json
-
-#api-gateway
-api-gateway/node_modules
-api-gateway/package-lock.json
 
 # characters
-characters-service/node_modules
-characters-service/package-lock.json
-characters-service/coverage
-characters-service/.env
-
-#players
-players-service/node_modules
-players-service/package-lock.json
-players-service/coverage
-players/.env
+**/node_modules
+**/package-lock.json
+**/coverage
+**/.env
 
 #frontend
-client/node_modules
-client/package-lock.json
-client/.env
 client/.pnp
 client/.pnp.js
-client/coverage
+
 # production
 client/build
